@@ -2,31 +2,20 @@
 
 #include "StackNode.h"
 
-Stack::Stack()
+template <typename T>
+Stack<T>::Stack()
 {
     //rien de nécessaire ici
 }
 
-Stack::~Stack()
+template <typename T>
+Stack<T>::~Stack()
 {
     delete this->_root;
 }
 
-void Stack::push(int v)
-{
-    StackNode* newNode = new StackNode{v, this->_root};
-    if (this->_root == nullptr)
-        this->_root = newNode;
-    else
-        this->_root = newNode;
-}
-
-int Stack::read()
-{
-    return this->_root->v;
-}
-
-void Stack::pop()
+template <typename T>
+void Stack<T>::pop()
 {
     if (this->_root == nullptr)
         return;
@@ -35,4 +24,10 @@ void Stack::pop()
         this->_root = this->_root->next;
         delete old;
     }
+}
+
+template <typename T>
+bool Stack<T>::empty()
+{
+    return false;
 }
