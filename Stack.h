@@ -2,11 +2,13 @@
 
 #include "StackNode.h"
 
+#include <vector>
+
 template <typename T>
 struct Stack
 {
 private:
-	StackNode* _root;
+	StackNode<T>* _root{nullptr};
 public:
 	Stack();
 	~Stack();
@@ -25,6 +27,11 @@ public:
     /// @brief regarder si la pile est vide
     /// @return vrai si elle est vide, faux sinon
     bool empty();
+
+    /// @brief bruler le stack et le convertir en vecteur
+    /// @param invert : inverser le stack ou non en le brulant
+    /// @return le vecteur avec les valeurs du stack
+    std::vector<T> burn(bool invert = false);
 };
 
 template <typename T>
@@ -42,11 +49,8 @@ Stack<T>::~Stack()
 template <typename T>
 void Stack<T>::push(T v)
 {
-    StackNode* newNode = new StackNode{v, this->_root};
-    if (this->_root == nullptr)
-        this->_root = newNode;
-    else
-        this->_root = newNode;
+    StackNode<T>* newNode = new StackNode<T>{v, this->_root};
+    this->_root = newNode;
 }
 
 template <typename T>
@@ -61,8 +65,9 @@ void Stack<T>::pop()
     if (this->_root == nullptr)
         return;
     else{
-        StackNode* old = this->_root;
+        StackNode<T>* old = this->_root;
         this->_root = this->_root->next;
+        old->next = nullptr;
         delete old;
     }
 }
@@ -71,4 +76,19 @@ template <typename T>
 bool Stack<T>::empty()
 {
     return this->_root == nullptr;
+}
+
+template <typename T>
+std::vector<T> Stack<T>::burn(bool invert){
+    std::vector<T> out;
+
+    while (!this->empty()){
+        T toAdd = this->read();
+        this->pop();
+        if (!invert)
+            out.insert(out.begin(), toAdd);
+        else
+            out.push_back(toAdd);
+    }
+    return out;
 }
