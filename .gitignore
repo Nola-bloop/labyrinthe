@@ -1,0 +1,7 @@
+.vscode
+*.tar.gz
+*.zip
+compile
+tests.cpp
+Labyrinth
+*.tp2

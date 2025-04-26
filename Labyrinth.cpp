@@ -4,9 +4,45 @@
 #include "Stack.h"
 #include "TraitementTexte.h"
 #include "FileManager.h"
+#include "Explorer.h"
 
 #include <map>
 #include <string>
+#include <iostream>
+
+//implémentation de l'interface
+void Labyrinth::afficherLiens()
+{
+    std::cout<<"Liens:\n";
+    std::cout<<this->toString()<<"\n";
+}
+
+void Labyrinth::afficherSolution()
+{
+    std::vector<int> sol = Explorer::findPath(*this);
+    std::string out;
+
+    for (size_t i{0}; i < sol.size(); i++){
+        out += std::to_string(sol[i]);
+        if (i != sol.size()-1){
+            out += " - ";
+        }
+    }
+
+    std::cout << out;
+}
+
+void Labyrinth::lireLabyrinthe(std::string path){
+    *this = Labyrinth::loadFromPath(path);
+}
+
+void Labyrinth::ecrireSolution(std::string path){
+    this->save(path);
+}
+
+
+
+
 
 void Labyrinth::insertEmptyNodes(const std::map<int, std::string>& data)
 {

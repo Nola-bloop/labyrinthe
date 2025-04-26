@@ -5,8 +5,10 @@
 #include <string>
 
 #include "LabyrinthNode.h"
+#include "IAffichable.h"
+#include "ILectureEcriture.h"
 
-class Labyrinth
+class Labyrinth : public IAffichable, public ILectureEcriture
 {
 private:
     LabyrinthNode* start{nullptr};
@@ -53,4 +55,10 @@ public:
     int idxToIndex(int idx);
 
     std::string toString();
+
+    //interfaces
+    void afficherLiens() override;
+    void afficherSolution() override;
+    void lireLabyrinthe(std::string path) override;
+    void ecrireSolution(std::string path) override;
 };
