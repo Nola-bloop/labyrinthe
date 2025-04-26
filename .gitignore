@@ -1,7 +1,14 @@
+#vsc
 .vscode
+
+#archives
 *.tar.gz
 *.zip
+
+#compilation
 compile
-tests.cpp
 Labyrinth
+
+#fichiers de test
+tests.cpp
 *.tp2
