@@ -6,7 +6,6 @@ struct LabyrinthNode
 {
     int idx{0};
     std::vector<LabyrinthNode*> links;
-    bool visited{false};
 
     /// @brief checks if a certain tile is within the links
     /// @param idx tile to find amongst the links
