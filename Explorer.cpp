@@ -10,8 +10,8 @@ std::vector<int> Explorer::findPath(Labyrinth& l)
 {
     //variables et raccourcis
     Stack<LabyrinthNode*> path; //la variable qui retient le chemin
-    std::map<LabyrinthNode*, bool> history;
-    Stack<LabyrinthNode*> toExplore; //la variable qui retient tous les nodes visités
+    std::map<LabyrinthNode*, bool> history; //la variable qui retient tous les nodes visités
+    Stack<LabyrinthNode*> toExplore; // nodes à visiter
     LabyrinthNode* end = l.getEnd();
 
     toExplore.push(l.getStart());
